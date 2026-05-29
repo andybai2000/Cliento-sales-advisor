@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cliento · Sales Advisor — The AI Sales Advisor for B2B Account Executives</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+<style>
+:root{--bg:#f0f4fc;--bg2:#eaeff8;--bg3:#fff;--border:#D5DEF0;--border2:#B7C8E4;--t1:#1C2B4A;--t2:#3D4F6E;--t3:#6B7A99;--blue:#2563eb;--bl:#eff6ff;--blm:#bfdbfe;--green:#16a34a;--gl:#f0fdf4;--rl:#fef2f2;--red:#dc2626;--am:#d97706;--al:#fffbeb;--sw:224px;--r:8px;--rs:6px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans','Segoe UI',sans-serif;background:var(--bg);color:var(--t1);font-size:14px;line-height:1.5;height:100vh;overflow:hidden}
+.screen{display:none}.screen.active{display:flex;height:100vh}
+
+/* LOGIN */
+#ls{align-items:center;justify-content:center;background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 50%,#1a56a0 100%)}
+.lc{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:40px;width:420px;box-shadow:0 24px 64px rgba(0,0,0,0.25)}
+.login-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:6px}
+.login-logo-wrap{display:flex;align-items:center;gap:8px}
+.login-tagline{font-size:11px;color:var(--t3);text-align:center;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border);letter-spacing:.02em}
+.lt{font-size:20px;font-weight:600;margin-bottom:5px;color:var(--t1)}
+.ls3{font-size:13px;color:var(--t2);margin-bottom:20px}
+.fg{margin-bottom:12px}.fl{font-size:12px;font-weight:500;color:var(--t2);margin-bottom:4px;display:block}
+.fi{width:100%;border:1px solid var(--border);border-radius:var(--rs);padding:9px 12px;font-size:13px;font-family:'DM Sans',sans-serif;background:var(--bg3);color:var(--t1);transition:border-color .15s}
+.fi:focus{outline:none;border-color:var(--blue)}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.bp{width:100%;background:var(--blue);color:#fff;border:none;border-radius:var(--rs);padding:11px;font-size:14px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:6px;transition:opacity .15s;letter-spacing:.01em}
+.bp:hover{opacity:.9}
+.lf{text-align:center;margin-top:14px;font-size:12px;color:var(--t3)}.lf a{color:var(--blue);cursor:pointer;text-decoration:none}
+.login-trust{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:18px;padding-top:14px;border-top:1px solid var(--border)}
+.trust-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--t3)}
+.trust-item i{font-size:13px;color:var(--green)}
+
+/* SIDEBAR */
+.sb{width:var(--sw);background:#f0f4fc;border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0}
+.sbt{padding:14px 12px 10px}
+.sbb2{display:flex;align-items:center;gap:8px;margin-bottom:14px;padding:0 4px}
+.sbl{width:26px;height:26px;background:var(--blue);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:600;flex-shrink:0}
+.sbn{font-size:13px;font-weight:700;color:var(--blue);font-family:'DM Sans',sans-serif;letter-spacing:.01em}
+.sbsub{font-size:10px;color:var(--t3);letter-spacing:.02em}
+.sbsrch{display:flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--rs);padding:6px 10px;font-size:12px;color:var(--t3);cursor:pointer}
+.sbsec{padding:14px 12px 2px}
+.sbsl{font-size:10px;font-weight:600;color:var(--t3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px;padding:0 4px}
+.sbi{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:var(--rs);font-size:13px;color:var(--t2);cursor:pointer;margin-bottom:1px;transition:background .1s;position:relative}
+.sbi:hover{background:var(--bg2)}.sbi.on{background:#e3f2fd;color:var(--blue);font-weight:600}
+.sbi i{font-size:16px;width:18px;color:var(--t3)}.sbi.on i{color:var(--blue)}
+.sbdot{margin-left:auto;width:7px;height:7px;border-radius:50%;background:#22c55e;flex-shrink:0}
+.sbbot{margin-top:auto;padding:12px;border-top:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.sbav{width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sbun{font-size:12px;font-weight:500}.sbur{font-size:10px;color:var(--t3)}
+
+/* MAIN */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:48px;border-bottom:2px solid var(--blue);background:#fff;flex-shrink:0;box-shadow:0 2px 8px rgba(26,143,232,.08)}
+.tbl{display:flex;align-items:center;gap:12px}
+.tbtitle{font-size:15px;font-weight:600;color:var(--blue);font-family:'DM Sans',sans-serif;letter-spacing:.01em}
+.tbr{display:flex;align-items:center;gap:6px}
+.tbon{width:7px;height:7px;border-radius:50%;background:#22c55e}
+.tbtxt{font-size:12px;color:var(--green);font-weight:500}
+
+/* MODULE LAYOUT */
+.mod-layout{flex:1;display:flex;overflow:hidden}
+
+/* HISTORY SIDEBAR */
+.hist-sb{width:200px;border-right:1px solid var(--border);display:none;flex-direction:column;background:#f8fafd;flex-shrink:0}
+.hist-top{padding:12px;border-bottom:1px solid var(--border)}
+.hist-new{width:100%;display:flex;align-items:center;gap:6px;padding:7px 10px;background:var(--blue);color:#fff;border:none;border-radius:var(--rs);font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif}
+.hist-list{flex:1;overflow-y:auto;padding:8px}
+.hist-item{padding:7px 9px;border-radius:var(--rs);cursor:pointer;margin-bottom:2px;border:1px solid transparent}
+.hist-item:hover{background:var(--bg2)}.hist-item.on{background:var(--bl);border-color:var(--blm)}
+.hist-title{font-size:12px;font-weight:500;color:var(--t1);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hist-date{font-size:10px;color:var(--t3)}
+.hist-empty{padding:12px;font-size:12px;color:var(--t3);text-align:center}
+
+/* CHAT */
+.chat-wrap{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.msgs{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:14px}
+.msgs::-webkit-scrollbar{width:3px}.msgs::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+
+/* BRIEF */
+.brief{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px}
+.brief-t{font-size:12px;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:5px}
+.brief-t i{color:var(--am)}
+.brief-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px}
+.brief-row:last-child{border:none;padding-bottom:0}
+.btag{padding:2px 7px;border-radius:10px;font-size:10px;font-weight:600;flex-shrink:0}
+.btag.w{background:var(--al);color:var(--am)}.btag.g{background:var(--gl);color:var(--green)}
+.bact{margin-left:auto;font-size:11px;color:var(--blue);cursor:pointer;white-space:nowrap}
+
+/* MESSAGES */
+.mr{display:flex;gap:10px}.mr.u{flex-direction:row-reverse}
+.av{width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.av.ai{background:var(--bl);color:var(--blue)}.av.u{background:var(--blue);color:#fff}
+.mb{max-width:78%}
+.mlbl{font-size:11px;color:var(--t3);margin-bottom:3px}
+.bbl{padding:10px 13px;border-radius:var(--r);font-size:13px;line-height:1.7}
+.bbl.ai{background:var(--bg3);border:1px solid var(--border);border-top-left-radius:3px}
+.bbl.u{background:var(--blue);color:#fff;border-top-right-radius:3px}
+.bbl.ai strong{color:var(--blue)}
+
+/* AVATAR PORTRAIT */
+.av-portrait{width:28px;height:28px;border-radius:50%;overflow:hidden;flex-shrink:0;border:1.5px solid var(--blm)}
+.av-portrait svg{width:100%;height:100%}
+
+/* FRAMEWORK BUTTON */
+.fw-btn{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:5px 12px;background:var(--bg2);border:1px solid var(--border);border-radius:20px;font-size:11px;color:var(--t2);cursor:pointer;transition:all .15s}
+.fw-btn:hover{background:var(--bl);color:var(--blue);border-color:var(--blm)}
+
+/* FRAMEWORK CARD */
+.fw-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-top:10px}
+.fw-hdr{background:var(--blue);padding:10px 14px;display:flex;align-items:center;gap:8px}
+.fw-hdr i{color:rgba(255,255,255,.8);font-size:15px}
+.fw-hdr-t{font-size:13px;font-weight:600;color:#fff}
+.fw-body{padding:14px 14px 10px;display:flex;flex-direction:column;gap:0}
+.fw-layer{display:flex;align-items:stretch;margin-bottom:0}
+.fw-layer-label{writing-mode:vertical-rl;text-orientation:mixed;font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);width:18px;display:flex;align-items:center;justify-content:center;padding:8px 0;flex-shrink:0}
+.fw-layer-cards{flex:1;display:flex;gap:6px;padding:8px 0 8px 6px;border-left:2px solid var(--border)}
+.fw-card-item{flex:1;border-radius:var(--rs);padding:8px 10px;text-align:center;border:1px solid transparent;cursor:default;transition:box-shadow .15s}
+.fw-card-item:hover{box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.fw-ci-title{font-size:12px;font-weight:600;margin-bottom:3px}
+.fw-ci-sub{font-size:10px;line-height:1.4}
+.fw-ci-blue{background:#EFF6FF;border-color:#BFDBFE}.fw-ci-blue .fw-ci-title{color:#1D4ED8}.fw-ci-blue .fw-ci-sub{color:#3B82F6}
+.fw-ci-green{background:#F0FDF4;border-color:#BBF7D0}.fw-ci-green .fw-ci-title{color:#15803D}.fw-ci-green .fw-ci-sub{color:#16A34A}
+.fw-ci-amber{background:#FFFBEB;border-color:#FDE68A}.fw-ci-amber .fw-ci-title{color:#92400E}.fw-ci-amber .fw-ci-sub{color:#D97706}
+.fw-ci-purple{background:#FAF5FF;border-color:#E9D5FF}.fw-ci-purple .fw-ci-title{color:#6B21A8}.fw-ci-purple .fw-ci-sub{color:#9333EA}
+.fw-ci-gray{background:#F4F4F5;border-color:#D4D4D8}.fw-ci-gray .fw-ci-title{color:#18181B}.fw-ci-gray .fw-ci-sub{color:#71717A}
+.fw-connector{display:flex;align-items:center;justify-content:center;height:20px;margin-left:24px}
+.fw-connector-arrow{width:2px;height:20px;background:var(--border2);position:relative}
+.fw-connector-arrow::after{content:'';position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid var(--border2)}
+
+/* SUGGESTS */
+.pills{display:flex;flex-wrap:wrap;gap:5px;padding:8px 0 0}
+.pill{padding:4px 11px;border:1px solid var(--blm);border-radius:20px;font-size:11px;color:var(--blue);background:var(--bl);cursor:pointer}
+.pill:hover{background:var(--blm)}
+
+/* INPUT */
+.ibar{padding:12px 16px;border-top:1px solid var(--border);display:flex;gap:8px;align-items:flex-end;background:var(--bg3);flex-shrink:0}
+.ifield{flex:1;border:1px solid var(--border);border-radius:var(--r);padding:9px 12px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--t1);background:var(--bg2);resize:none;min-height:38px;max-height:120px;transition:border-color .15s}
+.ifield:focus{outline:none;border-color:var(--blue);background:var(--bg3)}
+.ifield::placeholder{color:var(--t3)}
+.isend{width:36px;height:36px;background:var(--blue);border:none;border-radius:var(--rs);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:opacity .15s}
+.isend:hover{opacity:.85}.isend i{color:#fff;font-size:16px}
+.isend:disabled{opacity:.4;cursor:not-allowed}
+
+/* RIGHT PANEL */
+.rp{width:206px;border-left:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;flex-shrink:0;background:#f8fafd}
+.rps{padding:12px 12px 8px;border-bottom:1px solid var(--border)}
+.rpl{font-size:10px;font-weight:600;color:var(--t3);letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px}
+.stage{display:flex;align-items:center;gap:7px;padding:5px 7px;border-radius:var(--rs);font-size:12px;color:var(--t2);cursor:pointer;margin-bottom:1px;transition:background .1s}
+.stage:hover{background:var(--bg2)}.stage.on{background:var(--bl);color:var(--blue);font-weight:500}
+.sdot{width:18px;height:18px;border-radius:50%;border:1.5px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;flex-shrink:0}
+.spct{margin-left:auto;font-size:10px;opacity:.6;font-family:'DM Mono',monospace}
+.qi{padding:8px 9px;background:var(--bg2);border-radius:var(--rs);cursor:pointer;margin-bottom:4px;border:1px solid transparent;transition:border-color .1s}
+.qi:hover{border-color:var(--border2)}
+.qit{font-size:12px;font-weight:500;color:var(--t1);margin-bottom:1px}
+.qis{font-size:10px;color:var(--t3)}
+
+/* TYPING */
+.typing{display:flex;gap:4px;padding:10px 13px}
+.typing span{width:6px;height:6px;border-radius:50%;background:var(--t3);animation:bl 1.2s infinite}
+.typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
+@keyframes bl{0%,80%,100%{opacity:.3}40%{opacity:1}}
+
+/* PROCESS SCREEN */
+#ps{flex-direction:row}
+.proc-content{flex:1;overflow-y:auto;padding:24px}
+.proc-sec{margin-bottom:28px}
+.proc-sec-t{font-size:13px;font-weight:600;color:var(--t2);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px}
+.proc-row{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.proc-row::-webkit-scrollbar{height:3px}.proc-row::-webkit-scrollbar-thumb{background:var(--border2)}
+.pcard{min-width:148px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:12px;cursor:pointer;transition:border-color .15s,box-shadow .15s;flex-shrink:0}
+.pcard:hover{border-color:var(--blue);box-shadow:0 2px 8px rgba(37,99,235,.1)}
+.pcard.hl{border-color:var(--blue);background:var(--bl)}
+.pstage{font-size:10px;font-weight:600;color:var(--blue);margin-bottom:5px;font-family:'DM Mono',monospace}
+.ptitle{font-size:12px;font-weight:600;color:var(--t1);margin-bottom:3px;line-height:1.3}
+.pdesc{font-size:11px;color:var(--t3);line-height:1.4}
+.ppct{margin-top:8px;font-size:10px;color:var(--t3);font-family:'DM Mono',monospace;display:flex;align-items:center;gap:4px}
+.pbar{flex:1;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+.pbar-f{height:100%;background:var(--blue);border-radius:2px}
+.funnel-row{display:flex;gap:6px}
+.fs{flex:1;text-align:center;padding:10px 6px;border-radius:var(--rs);font-size:11px;font-weight:600;cursor:pointer}
+.fsa{background:#f1f5f9;color:#475569}.fsg{background:var(--bl);color:var(--blue)}
+.fsc{background:var(--gl);color:var(--green)}.fse{background:var(--al);color:var(--am)}
+.fsv{background:#fdf4ff;color:#9333ea}.fsw{background:#dcfce7;color:#15803d}
+.fsl{font-size:10px;opacity:.75;margin-top:2px;font-weight:400}
+
+/* PIPELINE */
+#pls{flex-direction:row}
+.pl-content{flex:1;overflow-y:auto;padding:20px}
+.kanban{display:flex;gap:12px;overflow-x:auto}
+.kcol{min-width:190px;flex-shrink:0}
+.kcol-h{font-size:12px;font-weight:600;color:var(--t2);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
+.kcnt{background:var(--bg2);color:var(--t3);font-size:10px;padding:1px 6px;border-radius:10px}
+.dc{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:10px 12px;margin-bottom:6px;cursor:pointer;transition:border-color .15s}
+.dc:hover{border-color:var(--blue)}
+.dn{font-size:13px;font-weight:500;margin-bottom:3px}
+.dm{font-size:11px;color:var(--t3);display:flex;gap:8px}
+.da{font-family:'DM Mono',monospace;font-size:11px;color:var(--t2);margin-top:5px}
+
+/* MODAL */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:100;align-items:center;justify-content:center}
+.overlay.open{display:flex}
+.modal{background:var(--bg3);border-radius:12px;width:560px;max-height:88vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.mh{background:var(--blue);padding:14px 18px;display:flex;align-items:center;justify-content:space-between}
+.mhl{display:flex;align-items:center;gap:10px}
+.mhnum{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.25);color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center}
+.mht{color:#fff;font-size:14px;font-weight:600}.mhst{color:rgba(255,255,255,.75);font-size:11px;margin-top:1px}
+.mhclose{color:rgba(255,255,255,.7);cursor:pointer;font-size:20px;background:none;border:none}
+.mprog{height:3px;background:rgba(255,255,255,.2)}
+.mprogf{height:100%;background:rgba(255,255,255,.8);border-radius:2px;transition:width .3s}
+.mbody{flex:1;overflow-y:auto;padding:16px 18px}
+.mbody::-webkit-scrollbar{width:3px}
+.msec{margin-bottom:18px}
+.msecl{font-size:10px;font-weight:600;color:var(--t3);letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:5px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.msecl i{color:var(--blue);font-size:14px}
+.qitem{margin-bottom:14px}
+.qrow{display:flex;align-items:flex-start;gap:8px;margin-bottom:3px}
+.qnum{width:20px;height:20px;border-radius:50%;background:var(--bl);color:var(--blue);font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.qtxt{font-size:13px;font-weight:500;color:var(--t1);line-height:1.4}
+.qhint{font-size:11px;color:var(--t3);margin:2px 0 5px 28px;font-style:italic}
+.qwhy{font-size:11px;color:var(--blue);margin:2px 0 5px 28px;background:var(--bl);padding:3px 8px;border-radius:var(--rs);display:inline-block}
+.qinp{width:calc(100% - 28px);margin-left:28px;display:block;border:1px solid var(--border);border-radius:var(--rs);padding:7px 10px;font-size:12px;font-family:'DM Sans',sans-serif;color:var(--t1);background:var(--bg2);resize:none;line-height:1.5;transition:border-color .15s}
+.qinp:focus{outline:none;border-color:var(--blue);background:var(--bg3)}
+.qinp::placeholder{color:var(--t3)}
+.qinp.ok{border-color:#bbf7d0;background:var(--bg3)}
+.qtags{display:flex;flex-wrap:wrap;gap:4px;margin:5px 0 0 28px}
+.qtag{padding:3px 9px;border:1px solid var(--border);border-radius:10px;font-size:11px;color:var(--t2);cursor:pointer;background:var(--bg2);transition:all .1s}
+.qtag:hover,.qtag.sel{background:var(--bl);color:var(--blue);border-color:var(--blm)}
+.mf{padding:12px 18px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--bg2)}
+.mftip{font-size:11px;color:var(--t3);display:flex;align-items:center;gap:4px}
+.mfbtns{display:flex;gap:8px}
+.bout{padding:7px 14px;background:transparent;color:var(--t1);border:1px solid var(--border);border-radius:var(--rs);font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:5px}
+.bout:hover{background:var(--bg3)}
+.bblue{padding:7px 16px;background:var(--blue);color:#fff;border:none;border-radius:var(--rs);font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:5px}
+.bblue:hover{opacity:.9}
+
+/* SETTINGS */
+.st-input{width:100%;border:1px solid var(--border);border-radius:var(--rs);padding:8px 10px;font-size:13px;font-family:'DM Sans',sans-serif;background:var(--bg2);color:var(--t1)}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="ls" class="screen active">
+  <div class="lc">
+    <div class="login-brand">
+      <svg width="52" height="34" viewBox="0 0 62 40" fill="none"><defs><linearGradient id="cg4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5ec6ff"/><stop offset="100%" stop-color="#1a8fe8"/></linearGradient></defs><circle cx="14" cy="26" r="10" fill="url(#cg4)"/><circle cx="26" cy="20" r="14" fill="url(#cg4)"/><circle cx="42" cy="18" r="16" fill="url(#cg4)"/><circle cx="56" cy="24" r="11" fill="url(#cg4)"/><rect x="10" y="26" width="54" height="12" fill="url(#cg4)" rx="2"/><circle cx="8" cy="34" r="7" fill="#42aaff" opacity=".75"/><circle cx="18" cy="36" r="8" fill="#42aaff" opacity=".75"/><rect x="4" y="34" width="22" height="7" fill="#42aaff" opacity=".75" rx="2"/></svg>
+      <div>
+        <div style="font-family:'DM Sans',sans-serif;color:#1a8fe8;font-size:22px;font-weight:700;letter-spacing:.02em;line-height:1">Cliento</div>
+        <div style="font-size:10px;color:var(--t3);letter-spacing:.04em;font-weight:500">SALES ADVISOR</div>
+      </div>
+    </div>
+    <div class="login-tagline">The AI Sales Advisor for B2B Account Executives</div>
+    <div class="lt">Get Started</div>
+    <div class="ls3">Tell us about yourself — your advisor will personalize every response.</div>
+    <div class="fr">
+      <div class="fg"><label class="fl">Full Name *</label><input class="fi" id="in" placeholder="Your name"></div>
+      <div class="fg"><label class="fl">Role *</label><input class="fi" id="ir" placeholder="e.g. Account Executive"></div>
+    </div>
+    <div class="fg"><label class="fl">Company *</label><input class="fi" id="ic" placeholder="Your company name"></div>
+    <div class="fr">
+      <div class="fg"><label class="fl">Work Email *</label><input class="fi" id="ie" placeholder="you@company.com"></div>
+      <div class="fg"><label class="fl">Industry</label><input class="fi" id="ind" placeholder="e.g. SaaS, Industrial"></div>
+    </div>
+    <button class="bp" onclick="doLogin()">Enter My Sales Advisor →</button>
+    <div class="login-trust">
+      <div class="trust-item"><i class="ti ti-lock"></i>Private session</div>
+      <div class="trust-item"><i class="ti ti-brain"></i>DDS Methodology</div>
+      <div class="trust-item"><i class="ti ti-award"></i>30 yrs experience</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN DASHBOARD -->
+<div id="ds" class="screen">
+  <div class="sb">
+    <div class="sbt">
+      <div class="sbb2">
+        <svg width="30" height="20" viewBox="0 0 62 40" fill="none"><defs><linearGradient id="cgs" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5ec6ff"/><stop offset="100%" stop-color="#1a8fe8"/></linearGradient></defs><circle cx="14" cy="26" r="10" fill="url(#cgs)"/><circle cx="26" cy="20" r="14" fill="url(#cgs)"/><circle cx="42" cy="18" r="16" fill="url(#cgs)"/><circle cx="56" cy="24" r="11" fill="url(#cgs)"/><rect x="10" y="26" width="54" height="12" fill="url(#cgs)" rx="2"/><circle cx="8" cy="34" r="7" fill="#42aaff" opacity=".75"/><circle cx="18" cy="36" r="8" fill="#42aaff" opacity=".75"/><rect x="4" y="34" width="22" height="7" fill="#42aaff" opacity=".75" rx="2"/></svg>
+        <div><div class="sbn">Cliento</div><div class="sbsub">Sales Advisor · DDS</div></div>
+      </div>
+      <button onclick="newChat()" style="width:100%;display:flex;align-items:center;gap:6px;padding:8px 12px;background:var(--blue);color:#fff;border:none;border-radius:var(--rs);font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;"><i class="ti ti-plus" style="font-size:15px"></i>New Conversation</button>
+      <div class="sbsrch" style="margin-top:8px;"><i class="ti ti-search" style="font-size:13px"></i><span>Quick jump</span><span style="margin-left:auto;font-size:10px;font-family:'DM Mono',monospace">⌘K</span></div>
+    </div>
+    <div class="sbsec">
+      <div class="sbsl">Advisor</div>
+      <div class="sbi on" id="nav-advisor" onclick="switchMod('advisor')"><i class="ti ti-brain"></i>Sales Advisor<div class="sbdot"></div></div>
+      <div class="sbi" id="nav-roleplay" onclick="switchMod('roleplay')"><i class="ti ti-users"></i>Role Play</div>
+      <div class="sbi" id="nav-coach" onclick="switchMod('coach')"><i class="ti ti-bulb"></i>Deal Coaching</div>
+      <div class="sbi" id="nav-script" onclick="switchMod('script')"><i class="ti ti-writing"></i>Script Builder</div>
+    </div>
+    <div class="sbsec">
+      <div class="sbsl">Pipeline</div>
+      <div class="sbi" onclick="showScreen('ps')"><i class="ti ti-git-branch"></i>Sales Process</div>
+      <div class="sbi" onclick="showScreen('pls')"><i class="ti ti-chart-bar"></i>Deal Pipeline</div>
+      <div class="sbi"><i class="ti ti-address-book"></i>My Accounts</div>
+      <div class="sbi"><i class="ti ti-file-text"></i>Knowledge Base</div>
+    </div>
+    <div class="sbsec">
+      <div class="sbsl">Growth</div>
+      <div class="sbi" onclick="showScreen('grs')"><i class="ti ti-chart-line"></i>Growth Report</div>
+      <div class="sbi" onclick="showScreen('sts')"><i class="ti ti-settings"></i>Settings</div>
+    </div>
+    <div class="sbbot">
+      <div class="sbav" id="sbav">A</div>
+      <div><div class="sbun" id="sbun">User</div><div class="sbur" id="sbur">Account Executive</div></div>
+    </div>
+  </div>
+  <div class="main">
+    <div class="topbar">
+      <div class="tbl" style="gap:16px">
+        <div style="display:flex;align-items:center;gap:8px;padding-right:16px;border-right:1px solid var(--border)">
+          <svg width="28" height="18" viewBox="0 0 62 40" fill="none"><defs><linearGradient id="cgt" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5ec6ff"/><stop offset="100%" stop-color="#1a8fe8"/></linearGradient></defs><circle cx="14" cy="26" r="10" fill="url(#cgt)"/><circle cx="26" cy="20" r="14" fill="url(#cgt)"/><circle cx="42" cy="18" r="16" fill="url(#cgt)"/><circle cx="56" cy="24" r="11" fill="url(#cgt)"/><rect x="10" y="26" width="54" height="12" fill="url(#cgt)" rx="2"/><circle cx="8" cy="34" r="7" fill="#42aaff" opacity=".75"/><circle cx="18" cy="36" r="8" fill="#42aaff" opacity=".75"/><rect x="4" y="34" width="22" height="7" fill="#42aaff" opacity=".75" rx="2"/></svg>
+          <span style="font-family:'DM Sans',sans-serif;color:#1a8fe8;font-size:15px;font-weight:700;letter-spacing:.02em">Cliento</span>
+        </div>
+        <div class="tbtitle" id="mod-title">Sales Advisor</div>
+      </div>
+      <div class="tbr"><div class="tbon"></div><div class="tbtxt">Andy · Online</div></div>
+    </div>
+    <div class="mod-layout">
+      <div class="hist-sb">
+        <div class="hist-top">
+          <button class="hist-new" onclick="newChat()"><i class="ti ti-plus" style="font-size:14px"></i>New Chat</button>
+        </div>
+        <div class="hist-list" id="hist-list"><div class="hist-empty">No conversations yet</div></div>
+      </div>
+      <div class="chat-wrap">
+        <div class="msgs" id="msgs"></div>
+        <div class="ibar">
+          <textarea class="ifield" id="inp" placeholder="Describe your sales situation, or ask anything…" rows="1" onkeydown="hk(event)" oninput="ar(this)"></textarea>
+          <button class="isend" id="sbtn" onclick="send()"><i class="ti ti-arrow-up"></i></button>
+        </div>
+      </div>
+      <div class="rp">
+        <div class="rps">
+          <div class="rpl">Deal Stage</div>
+          <div class="stage" onclick="openKYC(1)"><div class="sdot">A</div>Activate<span class="spct">0%</span></div>
+          <div class="stage" onclick="openKYC(2)"><div class="sdot">G</div>Goal Shared<span class="spct">10%</span></div>
+          <div class="stage" onclick="openKYC(3)"><div class="sdot">C</div>Champion<span class="spct">20%</span></div>
+          <div class="stage on" onclick="openKYC(4)"><div class="sdot">E</div>Evaluating<span class="spct">50%</span></div>
+          <div class="stage" onclick="openKYC(5)"><div class="sdot">V</div>Verbal Win<span class="spct">90%</span></div>
+          <div class="stage" onclick="openKYC(6)"><div class="sdot">W</div>Won & Deliver<span class="spct">100%</span></div>
+        </div>
+        <div class="rps">
+          <div class="rpl">Quick Tools</div>
+          <div class="qi" onclick="iq('Help me run a SPIN discovery on this prospect. I\'ll describe the situation.')"><div class="qit">SPIN Discovery</div><div class="qis">4-question framework</div></div>
+          <div class="qi" onclick="iq('My prospect says we\'re too expensive. Help me respond using TCO analysis.')"><div class="qit">Price Objection</div><div class="qis">TCO reframe script</div></div>
+          <div class="qi" onclick="iq('My deal has been stuck for 3 months. Help me diagnose why and find a way forward.')"><div class="qit">Stuck Deal Rescue</div><div class="qis">Stalled pipeline diagnosis</div></div>
+          <div class="qi" onclick="iq('Help me prepare for a meeting with the technical director. What should I ask?')"><div class="qit">Call Prep</div><div class="qis">Pre-meeting question list</div></div>
+          <div class="qi" onclick="iq('Help me map the stakeholder interests in this deal using an Interest Matrix.')"><div class="qit">Stakeholder Map</div><div class="qis">Interest matrix analysis</div></div>
+          <div class="qi" onclick="openKYC(2)"><div class="qit">KYC Checklist</div><div class="qis">Discovery question guide</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SALES PROCESS SCREEN -->
+<div id="ps" class="screen">
+  <div class="sb">
+    <div class="sbt"><div class="sbb2"><svg width="30" height="20" viewBox="0 0 62 40" fill="none"><defs><linearGradient id="cgsp" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5ec6ff"/><stop offset="100%" stop-color="#1a8fe8"/></linearGradient></defs><circle cx="14" cy="26" r="10" fill="url(#cgsp)"/><circle cx="26" cy="20" r="14" fill="url(#cgsp)"/><circle cx="42" cy="18" r="16" fill="url(#cgsp)"/><circle cx="56" cy="24" r="11" fill="url(#cgsp)"/><rect x="10" y="26" width="54" height="12" fill="url(#cgsp)" rx="2"/><circle cx="8" cy="34" r="7" fill="#42aaff" opacity=".75"/><circle cx="18" cy="36" r="8" fill="#42aaff" opacity=".75"/><rect x="4" y="34" width="22" height="7" fill="#42aaff" opacity=".75" rx="2"/></svg><div><div class="sbn">Cliento</div><div class="sbsub">Sales Advisor · DDS</div></div></div></div>
+    <div class="sbsec"><div class="sbsl">Advisor</div><div class="sbi" onclick="showScreen('ds')"><i class="ti ti-brain"></i>Sales Advisor</div></div>
+    <div class="sbsec"><div class="sbsl">Pipeline</div><div class="sbi on"><i class="ti ti-git-branch"></i>Sales Process</div><div class="sbi" onclick="showScreen('pls')"><i class="ti ti-chart-bar"></i>Deal Pipeline</div></div>
+    <div class="sbbot"><div class="sbav" id="psav">A</div><div><div class="sbun" id="psun">User</div></div></div>
+  </div>
+  <div class="main">
+    <div class="topbar"><div class="tbl" style="gap:16px"><svg width="28" height="18" viewBox="0 0 62 40" fill="none"><defs><linearGradient id="cgtps" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5ec6ff"/><stop offset="100%" stop-color="#1a8fe8"/></linearGradient></defs><circle cx="14" cy="26" r="10" fill="url(#cgtps)"/><circle cx="26" cy="20" r="14" fill="url(#cgtps)"/><circle cx="42" cy="18" r="16" fill="url(#cgtps)"/><circle cx="56" cy="24" r="11" fill="url(#cgtps)"/><rect x="10" y="26" width="54" height="12" fill="url(#cgtps)" rx="2"/></svg><div class="tbtitle">Sales Process · AGCEVW</div></div></div>
+    <div class="proc-content">
+      <div class="proc-sec">
+        <div class="proc-sec-t"><i class="ti ti-git-branch" style="font-size:15px;color:var(--blue)"></i>DDS Deal Stages — Discovery-Driven Selling</div>
+        <div class="proc-row">
+          <div class="pcard" onclick="openKYC(1)"><div class="pstage">A · Activate</div><div class="ptitle">Initial Outreach</div><div class="pdesc">Prospect identification, first contact, KYC Level 1</div><div class="ppct"><div class="pbar"><div class="pbar-f" style="width:0%"></div></div>0%</div></div>
+          <div class="pcard" onclick="openKYC(2)"><div class="pstage">G · Goal Shared</div><div class="ptitle">Discovery Meeting</div><div class="pdesc">SPIN questioning, pain discovery, goal alignment</div><div class="ppct"><div class="pbar"><div class="pbar-f" style="width:10%"></div></div>10%</div></div>
+          <div class="pcard" onclick="openKYC(3)"><div class="pstage">C · Champion</div><div class="ptitle">Solution Development</div><div class="pdesc">SDP tool, champion confirmed, stakeholder map</div><div class="ppct"><div class="pbar"><div class="pbar-f" style="width:20%"></div></div>20%</div></div>
+          <div class="pcard hl" onclick="openKYC(4)"><div class="pstage">E · Evaluating</div><div class="ptitle">Decision Advancement</div><div class="pdesc">KYC Level 2, decision chain, budget confirmed</div><div class="ppct"><div class="pbar"><div class="pbar-f" style="width:50%"></div></div>50%</div></div>
+          <div class="pcard" onclick="openKYC(5)"><div class="pstage">V · Verbal Win</div><div class="ptitle">Negotiation & Close</div><div class="pdesc">Negotiation worksheet, 3-line targets, BATNA</div><div class="ppct"><div class="pbar"><div class="pbar-f" style="width:90%"></div></div>90%</div></div>
+          <div class="pcard" onclick="openKYC(6)"><div class="pstage">W · Win</div><div class="ptitle">Deliver & Expand</div><div class="pdesc">Success metrics, delivery milestones, expansion</div><div class="ppct"><div class="pbar"><div class="pbar-f" style="width:100%"></div></div>100%</div></div>
+        </div>
+      </div>
+      <div class="proc-sec">
+        <div class="proc-sec-t"><i class="ti ti-tool" style="font-size:15px;color:var(--blue)"></i>Sales Tools · One for every stage</div>
+        <div class="proc-row">
+          <div class="pcard" onclick="iqAndGo('Help me write a cold outreach sequence for a new prospect. I\'ll describe the target.')"><div class="pstage">A · Activate</div><div class="ptitle">Outreach Scripts</div><div class="pdesc">Cold call + email sequence templates</div></div>
+          <div class="pcard" onclick="iqAndGo('Help me prepare SPIN discovery questions for an upcoming meeting.')"><div class="pstage">G · Goal Shared</div><div class="ptitle">Discovery Prep</div><div class="pdesc">SPIN question list + meeting agenda</div></div>
+          <div class="pcard" onclick="openKYC(3)"><div class="pstage">C · Champion</div><div class="ptitle">SDP Tool™</div><div class="pdesc">Solution Development Prompter</div></div>
+          <div class="pcard" onclick="iqAndGo('Help me write a post-meeting debrief with key findings and next steps.')"><div class="pstage">E · Evaluating</div><div class="ptitle">Call Debrief</div><div class="pdesc">Post-meeting report + stakeholder map</div></div>
+          <div class="pcard" onclick="iqAndGo('Help me build a benefit summary tied to the customer\'s specific goals.')"><div class="pstage">V · Verbal Win</div><div class="ptitle">Benefit Summary</div><div class="pdesc">Value summary aligned to buyer goals</div></div>
+          <div class="pcard" onclick="openKYC(5)"><div class="pstage">W · Win</div><div class="ptitle">Negotiation Sheet</div><div class="pdesc">3-line targets + BATNA + concession plan</div></div>
+        </div>
+      </div>
+      <div class="proc-sec">
+        <div class="proc-sec-t"><i class="ti ti-filter" style="font-size:15px;color:var(--blue)"></i>Pipeline Funnel · Stage overview</div>
+        <div class="funnel-row">
+          <div class="fs fsa" onclick="openKYC(1)">A<div class="fsl">Activate 0%</div></div>
+          <div class="fs fsg" onclick="openKYC(2)">G<div class="fsl">Goal 10%</div></div>
+          <div class="fs fsc" onclick="openKYC(3)">C<div class="fsl">Champion 20%</div></div>
+          <div class="fs fse" onclick="openKYC(4)">E<div class="fsl">Evaluate 50%</div></div>
+          <div class="fs fsv" onclick="openKYC(5)">V<div class="fsl">Verbal 90%</div></div>
+          <div class="fs fsw">W<div class="fsl">Won 100%</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PIPELINE SCREEN -->
+<div id="pls" class="screen">
+  <div class="sb">
+    <div class="sbt"><div class="sbb2"><svg width="30" height="20" viewBox="0 0 62 40" fill="none"><defs><linearGradient id="cgpl" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5ec6ff"/><stop offset="100%" stop-color="#1a8fe8"/></linearGradient></defs><circle cx="14" cy="26" r="10" fill="url(#cgpl)"/><circle cx="26" cy="20" r="14" fill="url(#cgpl)"/><circle cx="42" cy="18" r="16" fill="url(#cgpl)"/><circle cx="56" cy="24" r="11" fill="url(#cgpl)"/><rect x="10" y="26" width="54" height="12" fill="url(#cgpl)" rx="2"/></svg><div><div class="sbn">Cliento</div></div></div></div>
+    <div class="sbsec"><div class="sbi" onclick="showScreen('ds')"><i class="ti ti-brain"></i>Sales Advisor</div><div class="sbi" onclick="showScreen('ps')"><i class="ti ti-git-branch"></i>Sales Process</div><div class="sbi on"><i class="ti ti-chart-bar"></i>Deal Pipeline</div></div>
+    <div class="sbbot"><div class="sbav" id="plav">A</div><div><div class="sbun" id="plun">User</div></div></div>
+  </div>
+  <div class="main">
+    <div class="topbar"><div class="tbl"><div class="tbtitle">Deal Pipeline</div></div></div>
+    <div class="pl-content">
+      <div class="kanban">
+        <div class="kcol"><div class="kcol-h">A · Activate<span class="kcnt">2</span></div>
+          <div class="dc"><div class="dn">Global Tech Corp</div><div class="dm"><span>Enterprise SaaS</span><span>VP Engineering</span></div><div class="da">$ TBD</div></div>
+          <div class="dc"><div class="dn">Pacific Industrial</div><div class="dm"><span>Manufacturing</span><span>First contact</span></div><div class="da">$ TBD</div></div>
+        </div>
+        <div class="kcol"><div class="kcol-h">G · Goal Shared<span class="kcnt">1</span></div>
+          <div class="dc"><div class="dn">Apex Automotive</div><div class="dm"><span>Automotive Tier-1</span><span>Dir. Engineering</span></div><div class="da">$ ~120K</div></div>
+        </div>
+        <div class="kcol"><div class="kcol-h">C · Champion<span class="kcnt">1</span></div>
+          <div class="dc"><div class="dn">Meridian Systems</div><div class="dm"><span>System Integration</span><span>Champion confirmed</span></div><div class="da">$ ~280K</div></div>
+        </div>
+        <div class="kcol"><div class="kcol-h">E · Evaluating<span class="kcnt">2</span></div>
+          <div class="dc" style="border-color:var(--blue)"><div class="dn">NovaBio Sciences</div><div class="dm"><span>Life Sciences</span><span>CFO · Johnson</span></div><div class="da">$ ~650K</div></div>
+          <div class="dc"><div class="dn">CoreSemi Ltd</div><div class="dm"><span>Semiconductor</span><span>Procurement Dir.</span></div><div class="da">$ ~180K</div></div>
+        </div>
+        <div class="kcol"><div class="kcol-h">V · Verbal Win<span class="kcnt">1</span></div>
+          <div class="dc"><div class="dn">Stratos Energy</div><div class="dm"><span>Clean Energy</span><span>Contract review</span></div><div class="da">$ ~420K</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- KYC MODAL -->
+<div class="overlay" id="kyc-ov">
+  <div class="modal">
+    <div class="mh">
+      <div class="mhl"><div class="mhnum" id="mn">4</div><div><div class="mht" id="mt">Evaluating · KYC Tool</div><div class="mhst" id="mst">Know Your Customer · Save to knowledge base</div></div></div>
+      <button class="mhclose" onclick="closeKYC()"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="mprog"><div class="mprogf" id="mpf" style="width:50%"></div></div>
+    <div class="mbody" id="mbody"></div>
+    <div class="mf">
+      <div class="mftip"><i class="ti ti-database" style="font-size:13px"></i>Saved to your deal knowledge base</div>
+      <div class="mfbtns">
+        <button class="bout" onclick="sendKYC()"><i class="ti ti-message" style="font-size:13px"></i>Ask Andy to analyze</button>
+        <button class="bblue" onclick="saveKYC()"><i class="ti ti-check" style="font-size:13px"></i>Save to Knowledge Base</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GROWTH REPORT SCREEN -->
+<div id="grs" class="screen">
+  <div class="sb">
+    <div class="sbt"><div class="sbb2"><svg width="30" height="20" viewBox="0 0 62 40" fill="none"><defs><linearGradient id="cggr" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5ec6ff"/><stop offset="100%" stop-color="#1a8fe8"/></linearGradient></defs><circle cx="14" cy="26" r="10" fill="url(#cggr)"/><circle cx="26" cy="20" r="14" fill="url(#cggr)"/><circle cx="42" cy="18" r="16" fill="url(#cggr)"/><circle cx="56" cy="24" r="11" fill="url(#cggr)"/><rect x="10" y="26" width="54" height="12" fill="url(#cggr)" rx="2"/></svg><div><div class="sbn">Cliento</div><div class="sbsub">Sales Advisor · DDS</div></div></div></div>
+    <div class="sbsec"><div class="sbsl">Advisor</div><div class="sbi" onclick="showScreen('ds')"><i class="ti ti-brain"></i>Sales Advisor</div></div>
+    <div class="sbsec"><div class="sbsl">Pipeline</div><div class="sbi" onclick="showScreen('ps')"><i class="ti ti-git-branch"></i>Sales Process</div><div class="sbi" onclick="showScreen('pls')"><i class="ti ti-chart-bar"></i>Deal Pipeline</div></div>
+    <div class="sbsec"><div class="sbsl">Growth</div><div class="sbi on"><i class="ti ti-chart-line"></i>Growth Report</div><div class="sbi" onclick="showScreen('sts')"><i class="ti ti-settings"></i>Settings</div></div>
+    <div class="sbbot"><div class="sbav" id="grav">A</div><div><div class="sbun" id="grun">User</div></div></div>
+  </div>
+  <div class="main">
+    <div class="topbar"><div class="tbl"><div class="tbtitle">Growth Report</div></div></div>
+    <div style="flex:1;overflow-y:auto;padding:24px;max-width:760px">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px">
+        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:14px;text-align:center"><div style="font-size:24px;font-weight:700;color:var(--blue);font-family:'DM Mono',monospace">12</div><div style="font-size:11px;color:var(--t3);margin-top:3px">Conversations</div></div>
+        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:14px;text-align:center"><div style="font-size:24px;font-weight:700;color:var(--green);font-family:'DM Mono',monospace">4</div><div style="font-size:11px;color:var(--t3);margin-top:3px">Deals Advanced</div></div>
+        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:14px;text-align:center"><div style="font-size:24px;font-weight:700;color:var(--am);font-family:'DM Mono',monospace">3</div><div style="font-size:11px;color:var(--t3);margin-top:3px">Skills Practiced</div></div>
+        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:14px;text-align:center"><div style="font-size:24px;font-weight:700;color:#9333ea;font-family:'DM Mono',monospace">78%</div><div style="font-size:11px;color:var(--t3);margin-top:3px">KYC Completion</div></div>
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:14px">
+        <div style="font-size:13px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:6px"><i class="ti ti-trending-up" style="color:var(--blue);font-size:15px"></i>Andy's Coaching Insight This Month</div>
+        <div style="display:flex;gap:14px;align-items:flex-start">
+          <div style="width:44px;height:44px;border-radius:50%;overflow:hidden;flex-shrink:0;border:2px solid var(--blm)">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="44" height="44"><rect width="100" height="100" fill="#1a3a6b"/><ellipse cx="50" cy="38" rx="18" ry="20" fill="#f5c9a0"/><rect x="32" y="55" width="36" height="30" fill="#2a5298" rx="3"/><circle cx="41" cy="37" r="2.5" fill="#2c1810"/><circle cx="59" cy="37" r="2.5" fill="#2c1810"/><path d="M42 44 Q50 48 58 44" stroke="#c0785a" stroke-width="1.5" fill="none" stroke-linecap="round"/><rect x="36" y="28" width="28" height="6" fill="#888" rx="2" opacity=".7"/><rect x="38" y="27" width="4" height="3" fill="#777" rx="1"/><rect x="58" y="27" width="4" height="3" fill="#777" rx="1"/></svg>
+          </div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--blue);margin-bottom:4px">From Andy</div>
+            <div style="font-size:13px;color:var(--t2);line-height:1.6">You've been handling price objections well this month. The next gap to close: <strong>Champion cultivation</strong>. You have 3 deals where technical stakeholders are on board but you haven't reached the economic buyer. Practice the "champion to executive" bridge conversation.</div>
+            <div style="margin-top:10px"><span style="padding:5px 12px;background:var(--blue);color:#fff;border-radius:var(--rs);font-size:12px;font-weight:500;cursor:pointer" onclick="iq('My technical champion has approved the deal but I can\'t reach the economic buyer. How do I bridge that gap?')">Practice this now →</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SETTINGS SCREEN -->
+<div id="sts" class="screen">
+  <div class="sb">
+    <div class="sbt"><div class="sbb2"><svg width="30" height="20" viewBox="0 0 62 40" fill="none"><defs><linearGradient id="cgst" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5ec6ff"/><stop offset="100%" stop-color="#1a8fe8"/></linearGradient></defs><circle cx="14" cy="26" r="10" fill="url(#cgst)"/><circle cx="26" cy="20" r="14" fill="url(#cgst)"/><circle cx="42" cy="18" r="16" fill="url(#cgst)"/><circle cx="56" cy="24" r="11" fill="url(#cgst)"/><rect x="10" y="26" width="54" height="12" fill="url(#cgst)" rx="2"/></svg><div><div class="sbn">Cliento</div><div class="sbsub">Sales Advisor · DDS</div></div></div></div>
+    <div class="sbsec"><div class="sbsl">Advisor</div><div class="sbi" onclick="showScreen('ds')"><i class="ti ti-brain"></i>Sales Advisor</div></div>
+    <div class="sbsec"><div class="sbsl">Growth</div><div class="sbi" onclick="showScreen('grs')"><i class="ti ti-chart-line"></i>Growth Report</div><div class="sbi on"><i class="ti ti-settings"></i>Settings</div></div>
+    <div class="sbbot"><div class="sbav" id="stav">A</div><div><div class="sbun" id="stun">User</div></div></div>
+  </div>
+  <div class="main">
+    <div class="topbar"><div class="tbl"><div class="tbtitle">Settings</div></div></div>
+    <div style="flex:1;overflow-y:auto;padding:24px;max-width:600px">
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px">
+        <div style="font-size:13px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:6px"><i class="ti ti-user" style="font-size:15px;color:var(--blue)"></i>Your Profile</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div><div style="font-size:11px;font-weight:500;color:var(--t3);margin-bottom:5px">Name</div><input class="st-input" id="st-name" value=""></div>
+          <div><div style="font-size:11px;font-weight:500;color:var(--t3);margin-bottom:5px">Role</div><input class="st-input" id="st-role" value=""></div>
+          <div><div style="font-size:11px;font-weight:500;color:var(--t3);margin-bottom:5px">Company</div><input class="st-input" id="st-company" value=""></div>
+          <div><div style="font-size:11px;font-weight:500;color:var(--t3);margin-bottom:5px">Email</div><input class="st-input" id="st-email" value=""></div>
+        </div>
+        <button onclick="saveSettings()" style="margin-top:14px;padding:7px 16px;background:var(--blue);color:#fff;border:none;border-radius:var(--rs);font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif">Save Changes</button>
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px">
+        <div style="font-size:13px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:6px"><i class="ti ti-brain" style="font-size:15px;color:var(--blue)"></i>Advisor Settings</div>
+        <div style="margin-bottom:12px">
+          <div style="font-size:12px;font-weight:500;color:var(--t2);margin-bottom:5px">Response style</div>
+          <div style="display:flex;gap:8px">
+            <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--t2);cursor:pointer"><input type="radio" name="style" checked> Direct &amp; Sharp (recommended)</label>
+            <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--t2);cursor:pointer"><input type="radio" name="style"> Detailed walkthrough</label>
+          </div>
+        </div>
+        <div style="margin-bottom:12px">
+          <div style="font-size:12px;font-weight:500;color:var(--t2);margin-bottom:5px">Auto-generate framework diagrams</div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div id="toggle-fw" onclick="toggleFW(this)" style="width:36px;height:20px;background:var(--blue);border-radius:10px;cursor:pointer;position:relative;transition:background .2s"><div style="width:16px;height:16px;background:#fff;border-radius:50%;position:absolute;top:2px;right:2px;transition:right .2s"></div></div>
+            <span style="font-size:12px;color:var(--t2)">Show "Generate Framework" after each response</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:500;color:var(--t2);margin-bottom:5px">Your industry focus</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span onclick="this.classList.toggle('sel');this.style.background=this.classList.contains('sel')?'var(--bl)':'var(--bg2)';this.style.color=this.classList.contains('sel')?'var(--blue)':'var(--t2)';this.style.borderColor=this.classList.contains('sel')?'var(--blm)':'var(--border)'" style="padding:4px 10px;border:1px solid var(--blm);border-radius:10px;font-size:11px;color:var(--blue);background:var(--bl);cursor:pointer">Enterprise SaaS</span>
+            <span onclick="this.classList.toggle('sel');this.style.background=this.classList.contains('sel')?'var(--bl)':'var(--bg2)';this.style.color=this.classList.contains('sel')?'var(--blue)':'var(--t2)';this.style.borderColor=this.classList.contains('sel')?'var(--blm)':'var(--border)'" style="padding:4px 10px;border:1px solid var(--border);border-radius:10px;font-size:11px;color:var(--t2);background:var(--bg2);cursor:pointer">Industrial Automation</span>
+            <span onclick="this.classList.toggle('sel');this.style.background=this.classList.contains('sel')?'var(--bl)':'var(--bg2)';this.style.color=this.classList.contains('sel')?'var(--blue)':'var(--t2)';this.style.borderColor=this.classList.contains('sel')?'var(--blm)':'var(--border)'" style="padding:4px 10px;border:1px solid var(--border);border-radius:10px;font-size:11px;color:var(--t2);background:var(--bg2);cursor:pointer">Professional Services</span>
+            <span onclick="this.classList.toggle('sel');this.style.background=this.classList.contains('sel')?'var(--bl)':'var(--bg2)';this.style.color=this.classList.contains('sel')?'var(--blue)':'var(--t2)';this.style.borderColor=this.classList.contains('sel')?'var(--blm)':'var(--border)'" style="padding:4px 10px;border:1px solid var(--border);border-radius:10px;font-size:11px;color:var(--t2);background:var(--bg2);cursor:pointer">Medical Devices</span>
+            <span onclick="this.classList.toggle('sel');this.style.background=this.classList.contains('sel')?'var(--bl)':'var(--bg2)';this.style.color=this.classList.contains('sel')?'var(--blue)':'var(--t2)';this.style.borderColor=this.classList.contains('sel')?'var(--blm)':'var(--border)'" style="padding:4px 10px;border:1px solid var(--border);border-radius:10px;font-size:11px;color:var(--t2);background:var(--bg2);cursor:pointer">Semiconductor</span>
+            <span onclick="this.classList.toggle('sel');this.style.background=this.classList.contains('sel')?'var(--bl)':'var(--bg2)';this.style.color=this.classList.contains('sel')?'var(--blue)':'var(--t2)';this.style.borderColor=this.classList.contains('sel')?'var(--blm)':'var(--border)'" style="padding:4px 10px;border:1px solid var(--border);border-radius:10px;font-size:11px;color:var(--t2);background:var(--bg2);cursor:pointer">Clean Energy</span>
+            <span onclick="this.classList.toggle('sel');this.style.background=this.classList.contains('sel')?'var(--bl)':'var(--bg2)';this.style.color=this.classList.contains('sel')?'var(--blue)':'var(--t2)';this.style.borderColor=this.classList.contains('sel')?'var(--blm)':'var(--border)'" style="padding:4px 10px;border:1px solid var(--border);border-radius:10px;font-size:11px;color:var(--t2);background:var(--bg2);cursor:pointer">Aerospace</span>
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:20px">
+        <div style="font-size:13px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:6px"><i class="ti ti-info-circle" style="font-size:15px;color:var(--blue)"></i>About Cliento</div>
+        <div style="font-size:12px;color:var(--t2);line-height:2">
+          <div><span style="color:var(--t3)">Product</span>&nbsp;&nbsp;<span style="color:var(--t1);font-weight:500">Cliento · Sales Advisor</span></div>
+          <div><span style="color:var(--t3)">Version</span>&nbsp;&nbsp;<span style="font-family:'DM Mono',monospace;color:var(--t1)">v1.0-intl</span></div>
+          <div><span style="color:var(--t3)">Methodology</span>&nbsp;&nbsp;<span style="color:var(--t1)">DDS — Discovery-Driven Selling · SPIN</span></div>
+          <div><span style="color:var(--t3)">Created by</span>&nbsp;&nbsp;<span style="color:var(--t1)">Andy Bai · 30+ years B2B sales experience</span></div>
+          <div><span style="color:var(--t3)">AI Engine</span>&nbsp;&nbsp;<span style="color:var(--t1)">DeepSeek via secure proxy</span></div>
+          <div><span style="color:var(--t3)">Core belief</span>&nbsp;&nbsp;<span style="color:var(--t1);font-style:italic">The salesperson who asks better questions never runs out of deals.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── API CONFIG ───────────────────────────────────────────────────────────────
+// Replace WORKER_URL with your Cloudflare Worker URL after deployment.
+// Your Worker proxies requests to DeepSeek, keeping the API key server-side.
+// See README.md for Cloudflare Worker setup instructions.
+var WORKER_URL = 'https://old-term-5f66.baijing1818.workers.dev';
+
+// ─── SYSTEM PROMPT ────────────────────────────────────────────────────────────
+var SYSTEM = `You are Andy — the AI sales advisor behind Cliento · Sales Advisor.
+
+You were created by Andy Bai, a B2B sales veteran with 30+ years of real-world experience closing complex deals across industrial automation, precision manufacturing systems, robotics, enterprise software, and professional services — spanning automotive, aerospace, semiconductors, bioengineering, and SaaS markets globally.
+
+You are not a chatbot. You are not a search engine. You are the advisor Andy Bai wishes he had when he was starting out — direct, sharp, and deeply experienced. You've seen deals won and lost at every stage. You know what textbooks don't teach.
+
+Your methodology is called DDS — Discovery-Driven Selling. Core belief: The salesperson who asks better questions never runs out of deals. Selling is not about convincing. It's about guiding the buyer to discover, on their own terms, that your solution is the right answer to a real problem they genuinely need to solve.
+
+WHO YOU ARE:
+You speak directly. You don't waste words. You are warm but demanding — like a senior partner who respects the person across the table enough to tell them the hard truth. You ask sharp questions. You don't give answers until the person in front of you has thought hard enough to deserve one. You believe the best salespeople are the best listeners — and the best questioners.
+You hold two things simultaneously: the directness of a mentor who has seen it all, and the patience of an advisor who genuinely wants you to win.
+
+THREE HARD TRUTHS FROM 30 YEARS IN THE FIELD:
+
+HARD TRUTH #1 — The "First Win" Illusion
+When a salesperson closes their first big deal, they almost always attribute it to their charm, relationship, or persuasion skills. This is a dangerous anchor. The real question is never "How did I win?" The real question is: "Why did this specific customer buy this specific product at this specific moment — and what would have made them choose someone else?" One win proves nothing. The pattern behind the win is everything. If you can't articulate the real buying trigger, you got lucky. And luck doesn't scale.
+
+HARD TRUTH #2 — The Pipeline That Lies
+A deal can pass through every stage — lead qualified, account opened, opportunity identified, proposal submitted, budget confirmed — and still die. And the salesperson will say "the customer changed their mind." They didn't. Somewhere in that process, a critical KYC detail was missing or assumed. The customer was using your proposal to benchmark a competitor. Their internal solution architect never included your product in the actual design. Their real decision-maker was someone you never met. The process looked complete. The intelligence was hollow. If you cannot answer every KYC question clearly at each stage, you are not ready to advance. Incomplete intelligence is not a minor gap — it means you are not inside the real decision.
+
+HARD TRUTH #3 — The Silent Customer Is Leaving
+When a long-term customer stops asking questions, most salespeople feel relieved. The relationship feels stable. It isn't. A customer who is genuinely engaged asks questions — about your roadmap, your new capabilities, how you compare to what they're seeing in the market. When questions stop, they have already started talking to someone else. Repeat business is not a relationship — it's a continuously renewed value proposition. If you are not tracking how their needs are evolving, you are managing a relationship that is already eroding.
+
+DDS CORE PRINCIPLES:
+
+1. SITUATION BEFORE SOLUTION — Never present your solution before you understand their situation completely. Premature presenting is the most common and most costly mistake in complex B2B sales.
+
+2. QUESTIONS BEFORE OPINIONS — Your job is to ask the question that makes the other person see their own situation more clearly. The best sales conversation ends with the customer saying "I hadn't thought about it that way."
+
+3. STAKEHOLDER INTEREST MATRIX — In any B2B deal, an average of 5-8 people influence the final decision. Technical approval ≠ procurement approval ≠ executive sign-off. Map every stakeholder: their visible interests (business outcome) and hidden motivations (personal career, political position, risk tolerance). The party who understands all constraint maps — theirs and the other side's — holds the advantage.
+
+4. THE GATE RULE — At every sales stage, there are KYC questions that must be answered before advancing. If you cannot answer them clearly, you do not advance. Unanswered questions mean you are operating on assumptions. Assumptions lose deals.
+
+5. INFORMATION ASYMMETRY IS YOUR JOB — Triangulate intelligence from multiple sources: technical team, procurement, upstream/downstream partners, industry contacts, competitors. When information overlaps across sources — you've confirmed something real. When information contradicts sharply — that is your warning signal.
+
+6. SILENCE IS DATA — When a previously engaged customer stops asking questions, that is not comfort — that is a signal. Learn to read what is not said.
+
+7. WIN/LOSS REVIEW WITHOUT EXCUSES — Every deal requires a debrief. Not "why did the customer choose us" but "what was the real buying trigger." The salesperson who cannot do this honestly will repeat the same mistakes.
+
+NEGOTIATION PRINCIPLES:
+
+THREE-LINE TARGETING — Before any negotiation: define your Opening Position (ideal), Target (realistic), and Walk-Away Point (bottom line). Without all three, you are not negotiating — you are reacting.
+
+BATNA IS YOUR BACKBONE — Know your Best Alternative to a Negotiated Agreement before you sit down. The strength of your BATNA determines how much pressure you can absorb. Improve your BATNA before the negotiation starts.
+
+CONCESSIONS ARE CURRENCY — Never give a concession without receiving one. Small steps, slow pace. Every concession should be explicitly linked to a return. Unilateral concessions signal weakness and invite more demands.
+
+STAKEHOLDER CONSTRAINT MAP — Before complex negotiations, map all parties' visible interests, hidden motivations, and constraint intersections (budget cycles, delivery dependencies, approval hierarchies).
+
+DEADLOCK IS NOT THE END — When a negotiation stalls, introduce a new variable before you reduce the price. Reframe the problem before you cut the margin.
+
+SPIN QUESTIONING SEQUENCE — Always follow this order:
+S — Situation: Understand their current state. Facts, context, baseline.
+P — Problem: Surface the real difficulties. Let them articulate the pain. Do not name the pain for them.
+I — Implication: Help them see the consequence of inaction. Make the cost of the status quo visible.
+N — Need-Payoff: Let them describe the value of solving it. The customer who states the value out loud has already begun to buy.
+
+RESPONSE FORMAT — follow strictly:
+
+Before every response, internally assess (do not show this to user):
+- Does this person know what their real problem is?
+- Are they asking the right question, or the wrong one?
+- What do they actually need right now — a challenge, a framework, a specific action, or space to think?
+
+Then respond:
+
+➡️ **Core Issue**: 1-2 sentences. Name the real problem directly. Not the surface question — the underlying dynamic.
+
+➡️ **Sharp Question**: 1-2 questions that push deeper. Specific to their situation. Not generic.
+
+➡️ **Direction** (only when their thinking is clear enough): A logical framework or reframe. Not a solution — a lens.
+
+➡️ **Action Plan** (only when explicitly needed): Concrete, specific, time-bound. Not "consider reaching out" — "Send this specific message, to this person, making this ask, by Thursday."
+
+RULES:
+- Never use ### markdown headers. Never use ***.
+- Use ➡️ + bold for section labels only.
+- Language: English. Direct, no filler phrases, no "great question."
+- Do not give the answer before the person has thought hard enough to deserve it.
+- If they haven't answered your question, ask it again differently — don't move on.
+- Tone: Direct Mentor meets Trusted Advisor. Warm but unsparing.`;
+
+var modeSys = {
+  advisor: '',
+  roleplay: 'You are now in Role Play mode. Take on the role of a typical B2B enterprise buyer — cautious, budget-conscious, skeptical of vendor claims, with competing internal priorities. Stay in character. At the end of each response, add a brief [Coach note] with one honest observation about how the salesperson is doing.',
+  coach: 'You are now in Deal Coaching mode. The user will describe a specific deal or situation. Act as a seasoned sales coach — help them systematically analyze: deal stage assessment, decision chain analysis, risk identification, information gaps, and concrete next actions. Be specific, not generic.',
+  script: 'You are now in Script Builder mode. The user will describe a sales scenario. Generate ready-to-use scripts: opening statements, SPIN discovery questions, objection handling responses, and advancement scripts. Format clearly so each script can be copied directly.'
+};
+
+var modePlaceholders = {
+  advisor: 'Describe your sales situation, or ask anything…',
+  roleplay: 'Start your pitch — I\'ll play the buyer…',
+  coach: 'Describe your current deal situation…',
+  script: 'Describe the scenario you need a script for…'
+};
+
+var state = {
+  advisor: {history:[], sessions:[], curSession:null},
+  roleplay: {history:[], sessions:[], curSession:null},
+  coach: {history:[], sessions:[], curSession:null},
+  script: {history:[], sessions:[], curSession:null}
+};
+var curMod = 'advisor';
+var userName = 'User';
+
+// ─── LOGIN ────────────────────────────────────────────────────────────────────
+function doLogin() {
+  var nm = (document.getElementById('in')||{}).value || 'Sales Pro';
+  nm = nm.trim() || 'Sales Pro';
+  var role = (document.getElementById('ir')||{}).value || 'Account Executive';
+  var company = (document.getElementById('ic')||{}).value || '';
+  userName = nm;
+  ['sbav','psav','plav','grav','stav'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=nm[0]||'U';});
+  ['sbun','psun','plun','grun','stun'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=nm;});
+  document.getElementById('sbur').textContent = role;
+  var stn=document.getElementById('st-name');if(stn)stn.value=nm;
+  var str=document.getElementById('st-role');if(str)str.value=role;
+  var stc=document.getElementById('st-company');if(stc)stc.value=company;
+  var ste=document.getElementById('st-email');if(ste)ste.value=(document.getElementById('ie')||{}).value||'';
+  showScreen('ds');
+  newChat();
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
+  document.getElementById(id).classList.add('active');
+}
+
+// ─── MODULE SWITCHING ─────────────────────────────────────────────────────────
+function switchMod(mod) {
+  curMod = mod;
+  document.querySelectorAll('.sbi[id^="nav-"]').forEach(function(el){el.classList.remove('on');});
+  var navEl = document.getElementById('nav-'+mod);
+  if(navEl) navEl.classList.add('on');
+  var titles = {advisor:'Sales Advisor', roleplay:'Role Play', coach:'Deal Coaching', script:'Script Builder'};
+  document.getElementById('mod-title').textContent = titles[mod]||mod;
+  document.getElementById('inp').placeholder = modePlaceholders[mod]||modePlaceholders.advisor;
+  var s = state[curMod];
+  if(!s.curSession){
+    var sess={id:Date.now(),title:'New conversation',history:[],ts:new Date()};
+    s.sessions.unshift(sess); s.curSession=sess; s.history=[];
+  }
+  renderHistory();
+  renderSession();
+  if(!s.curSession.history.length){
+    var welcomes={
+      roleplay:'Role Play mode ready. Tell me what type of buyer you\'re visiting — company, role, deal stage — and I\'ll step into character.',
+      coach:'Deal Coaching mode ready. Describe the deal that\'s giving you the most trouble right now. Don\'t summarize — tell me the real story.',
+      script:'Script Builder ready. Describe the sales scenario you need a script for. The more specific, the better the output.'
+    };
+    if(welcomes[mod]){
+      var msgs=document.getElementById('msgs');
+      var row=document.createElement('div');row.className='mr';
+      var av=makeAdvisorAvatar();
+      var body=document.createElement('div');body.className='mb';
+      var lbl=document.createElement('div');lbl.className='mlbl';lbl.textContent='Andy · Cliento Advisor';
+      var bbl=document.createElement('div');bbl.className='bbl ai';bbl.textContent=welcomes[mod];
+      body.appendChild(lbl);body.appendChild(bbl);row.appendChild(av);row.appendChild(body);msgs.appendChild(row);
+    }
+  }
+}
+
+// ─── SESSION MANAGEMENT ───────────────────────────────────────────────────────
+function newChat() {
+  var s = state[curMod];
+  var sess = {id:Date.now(),title:'New conversation',history:[],ts:new Date()};
+  s.sessions.unshift(sess); s.curSession=sess; s.history=[];
+  renderHistory();
+  renderSession();
+}
+
+function loadSession(id) {
+  var s = state[curMod];
+  var sess = s.sessions.find(function(x){return x.id===id;});
+  if(!sess) return;
+  s.curSession=sess; s.history=sess.history.slice();
+  renderHistory(); renderSession();
+}
+
+function renderHistory() {
+  var s = state[curMod];
+  var list = document.getElementById('hist-list');
+  if(!s.sessions.length){list.innerHTML='<div class="hist-empty">No conversations yet</div>';return;}
+  list.innerHTML='';
+  s.sessions.forEach(function(sess){
+    var el=document.createElement('div');
+    el.className='hist-item'+(s.curSession&&s.curSession.id===sess.id?' on':'');
+    el.innerHTML='<div class="hist-title">'+sess.title+'</div><div class="hist-date">'+formatDate(sess.ts)+'</div>';
+    el.onclick=function(){loadSession(sess.id);};
+    list.appendChild(el);
+  });
+}
+
+function renderSession() {
+  var s = state[curMod];
+  var msgs = document.getElementById('msgs');
+  msgs.innerHTML='';
+  if(!s.curSession||!s.curSession.history.length){
+    if(curMod==='advisor') addWelcome();
+    return;
+  }
+  s.curSession.history.forEach(function(m){addMsgDOM(m.role,m.content,false,m.framework);});
+}
+
+function formatDate(d) {
+  if(!d) return '';
+  var now=new Date(), diff=now-d;
+  if(diff<3600000) return 'Just now';
+  if(diff<86400000) return Math.floor(diff/3600000)+'h ago';
+  return (d.getMonth()+1)+'/'+d.getDate();
+}
+
+// ─── WELCOME SCREEN ───────────────────────────────────────────────────────────
+function addWelcome() {
+  var msgs = document.getElementById('msgs');
+  var brief = document.createElement('div');
+  brief.className = 'brief';
+  brief.innerHTML = '<div class="brief-t"><i class="ti ti-sun"></i>Today\'s Follow-up Reminders</div>'+
+    '<div class="brief-row"><span class="btag w">Overdue</span><span style="flex:1;font-size:12px;color:var(--t2)">Johnson (CFO) · Evaluating stage · 5 days no contact</span><span class="bact" onclick="iq(\'Draft a follow-up email to CFO Johnson. Deal is in evaluation stage, 5 days no contact.\')">Draft email</span></div>'+
+    '<div class="brief-row"><span class="btag g">Today</span><span style="flex:1;font-size:12px;color:var(--t2)">Sarah Chen (VP Eng) · Discovery meeting 2:00 PM</span><span class="bact" onclick="iq(\'I have a discovery meeting with a VP of Engineering at 2pm today. Help me prepare 5 SPIN questions.\')">Meeting prep</span></div>';
+  msgs.appendChild(brief);
+
+  var av = makeAdvisorAvatar();
+  var row = document.createElement('div'); row.className='mr';
+  var body = document.createElement('div'); body.className='mb';
+  var lbl = document.createElement('div'); lbl.className='mlbl'; lbl.textContent='Andy · Cliento Advisor';
+  var bbl = document.createElement('div'); bbl.className='bbl ai';
+  bbl.innerHTML = "I'm Andy — your sales advisor, built on 30+ years of B2B deal experience.<br><br>Tell me what's on your plate. A deal that's stuck, a meeting you're preparing for, a prospect who went quiet. The more specific you are, the sharper I can be.";
+  body.appendChild(lbl); body.appendChild(bbl); row.appendChild(av); row.appendChild(body);
+  msgs.appendChild(row);
+
+  var pillsDiv = document.createElement('div'); pillsDiv.className='pills';
+  [
+    ['Prospect went quiet — what now?', 'My prospect was engaged but suddenly stopped responding. What do I do?'],
+    ['Can\'t reach the decision maker', 'I can\'t get access to the real decision maker. How do I get there?'],
+    ['They say we\'re too expensive', 'My prospect says our price is too high. How should I respond?'],
+    ['Deal stuck for 3 months', 'My deal has had no movement in 3 months. Help me diagnose what\'s wrong.']
+  ].forEach(function(p){
+    var pill = document.createElement('span'); pill.className='pill';
+    pill.textContent=p[0]; pill.onclick=function(){iq(p[1]);};
+    pillsDiv.appendChild(pill);
+  });
+  msgs.appendChild(pillsDiv);
+}
+
+// ─── ADVISOR AVATAR ───────────────────────────────────────────────────────────
+function makeAdvisorAvatar() {
+  var wrap = document.createElement('div');
+  wrap.className = 'av-portrait';
+  wrap.innerHTML = '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="#1a3a6b"/><ellipse cx="50" cy="38" rx="18" ry="20" fill="#f5c9a0"/><rect x="32" y="55" width="36" height="30" fill="#2a5298" rx="3"/><circle cx="41" cy="37" r="2.5" fill="#2c1810"/><circle cx="59" cy="37" r="2.5" fill="#2c1810"/><path d="M42 44 Q50 48 58 44" stroke="#c0785a" stroke-width="1.5" fill="none" stroke-linecap="round"/><rect x="36" y="28" width="28" height="6" fill="#888" rx="2" opacity=".7"/><rect x="38" y="27" width="4" height="3" fill="#777" rx="1"/><rect x="58" y="27" width="4" height="3" fill="#777" rx="1"/></svg>';
+  return wrap;
+}
+
+// ─── MESSAGE RENDERING ────────────────────────────────────────────────────────
+function addMsgDOM(role, content, save, framework) {
+  var msgs = document.getElementById('msgs');
+  var row = document.createElement('div'); row.className='mr'+(role==='user'?' u':'');
+  var av;
+  if(role==='user'){
+    av=document.createElement('div'); av.className='av u'; av.textContent=userName[0]||'U';
+  } else {
+    av=makeAdvisorAvatar();
+  }
+  var body = document.createElement('div'); body.className='mb';
+  if(role!=='user'){
+    var lbl=document.createElement('div'); lbl.className='mlbl'; lbl.textContent='Andy · Cliento Advisor';
+    body.appendChild(lbl);
+  }
+  var bbl = document.createElement('div'); bbl.className='bbl '+(role==='user'?'u':'ai');
+  var html = content.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/\n/g,'<br>')
+    .replace(/➡️\s*\*\*([^*]+)\*\*/g,'<br>➡️ <strong>$1</strong>')
+    .replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+  bbl.innerHTML = html;
+  body.appendChild(bbl);
+
+  if(role==='assistant' && content.length>50){
+    var fwBtn=document.createElement('div'); fwBtn.className='fw-btn';
+    fwBtn.innerHTML='<i class="ti ti-chart-bar" style="font-size:13px"></i>Generate Framework';
+    var fwCard=null;
+    fwBtn.onclick=async function(){
+      if(fwCard){fwCard.remove();fwCard=null;fwBtn.innerHTML='<i class="ti ti-chart-bar" style="font-size:13px"></i>Generate Framework';return;}
+      fwBtn.innerHTML='<i class="ti ti-loader" style="font-size:13px"></i>Generating…';
+      fwCard=await genFramework(content,body);
+      if(fwCard) fwBtn.innerHTML='<i class="ti ti-x" style="font-size:13px"></i>Hide Framework';
+      else fwBtn.innerHTML='<i class="ti ti-chart-bar" style="font-size:13px"></i>Generate Framework';
+    };
+    body.appendChild(fwBtn);
+    if(framework){fwCard=buildFrameworkCard(framework);body.appendChild(fwCard);}
+  }
+  row.appendChild(av); row.appendChild(body); msgs.appendChild(row);
+  msgs.scrollTop=msgs.scrollHeight;
+  if(save){
+    var s=state[curMod];
+    if(s.curSession){
+      s.curSession.history.push({role:role,content:content});
+      s.history=s.curSession.history.slice();
+      if(role==='user'&&s.curSession.title==='New conversation'){
+        s.curSession.title=content.substring(0,22)+(content.length>22?'…':'');
+        renderHistory();
+      }
+    }
+  }
+}
+
+// ─── FRAMEWORK CARD ───────────────────────────────────────────────────────────
+function buildFrameworkCard(fw) {
+  var card=document.createElement('div'); card.className='fw-card';
+  var hdr=document.createElement('div'); hdr.className='fw-hdr';
+  hdr.innerHTML='<i class="ti ti-layout-rows"></i><div class="fw-hdr-t">'+(fw.title||'Strategic Framework')+'</div>';
+  card.appendChild(hdr);
+  var body=document.createElement('div'); body.className='fw-body';
+  var colors=['fw-ci-blue','fw-ci-green','fw-ci-amber','fw-ci-purple','fw-ci-gray'];
+  var layerLabels=['Situation','Analysis','Strategy','Action','Outcome'];
+  (fw.layers||fw.steps||[]).forEach(function(layer,i){
+    if(i>0){var conn=document.createElement('div');conn.className='fw-connector';conn.innerHTML='<div class="fw-connector-arrow"></div>';body.appendChild(conn);}
+    var layerDiv=document.createElement('div'); layerDiv.className='fw-layer';
+    var lbl=document.createElement('div'); lbl.className='fw-layer-label';
+    lbl.textContent=layer.layerLabel||layerLabels[i]||('L'+(i+1));
+    layerDiv.appendChild(lbl);
+    var cardsDiv=document.createElement('div'); cardsDiv.className='fw-layer-cards';
+    var items=layer.items||[{title:layer.label||layer.main,sub:layer.sub||''}];
+    items.forEach(function(item){
+      var ci=document.createElement('div'); ci.className='fw-card-item '+(colors[i]||'fw-ci-gray');
+      ci.innerHTML='<div class="fw-ci-title">'+(item.title||item.main||'')+'</div><div class="fw-ci-sub">'+(item.sub||'')+'</div>';
+      cardsDiv.appendChild(ci);
+    });
+    layerDiv.appendChild(cardsDiv); body.appendChild(layerDiv);
+  });
+  card.appendChild(body); return card;
+}
+
+async function genFramework(replyText, parentBody) {
+  try {
+    var prompt='Based on this sales advisor response, extract the core strategic framework and return it as JSON only (no markdown, no explanation): {"title":"Framework title (max 6 words)","layers":[{"layerLabel":"Layer name (max 3 words)","items":[{"title":"Card title (max 5 words)","sub":"Description (max 12 words)"}]}]} Requirements: 3-5 layers, 1-4 cards per layer, layers progress logically (e.g. Situation→Problem→Strategy→Action). Cover the core logic of the response.\n\nResponse:\n'+replyText;
+    var res = await callAPI([{role:'user',content:prompt}], 400);
+    var txt = res.trim().replace(/```json|```/g,'');
+    var fw = JSON.parse(txt);
+    var card = buildFrameworkCard(fw);
+    parentBody.appendChild(card); return card;
+  } catch(e){console.error(e);return null;}
+}
+
+// ─── API CALL ─────────────────────────────────────────────────────────────────
+async function callAPI(messages, maxTokens) {
+  maxTokens = maxTokens || 1200;
+  var res = await fetch(WORKER_URL, {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({
+      model: 'deepseek-chat',
+      max_tokens: maxTokens,
+      messages: [{role:'system',content:SYSTEM}].concat(messages)
+    })
+  });
+  var data = await res.json();
+  return data.choices[0].message.content;
+}
+
+// ─── SEND MESSAGE ─────────────────────────────────────────────────────────────
+function addTyping() {
+  var msgs=document.getElementById('msgs');
+  var row=document.createElement('div');row.className='mr';row.id='tr';
+  var av=makeAdvisorAvatar();
+  var body=document.createElement('div');body.className='mb';
+  var lbl=document.createElement('div');lbl.className='mlbl';lbl.textContent='Andy · Cliento Advisor';
+  var bbl=document.createElement('div');bbl.className='bbl ai typing';
+  bbl.innerHTML='<span></span><span></span><span></span>';
+  body.appendChild(lbl);body.appendChild(bbl);row.appendChild(av);row.appendChild(body);
+  msgs.appendChild(row);msgs.scrollTop=msgs.scrollHeight;
+}
+
+function hk(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();}}
+function ar(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,120)+'px';}
+function iq(txt){showScreen('ds');document.getElementById('inp').value=txt;send();}
+function iqAndGo(txt){showScreen('ds');document.getElementById('inp').value=txt;send();}
+
+async function send() {
+  var inp = document.getElementById('inp');
+  var text = inp.value.trim();
+  if(!text) return;
+  inp.value=''; inp.style.height='auto';
+  document.getElementById('sbtn').disabled=true;
+  addMsgDOM('user',text,true);
+  addTyping();
+  var s = state[curMod];
+  var sysExtra = modeSys[curMod] ? '\n\n'+modeSys[curMod] : '';
+  var msgs = s.history.map(function(m){return{role:m.role,content:m.content};});
+  msgs.push({role:'user',content:text});
+  try {
+    var fullSystem = SYSTEM + sysExtra;
+    var res = await fetch(WORKER_URL, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({model:'deepseek-chat',max_tokens:1200,messages:[{role:'system',content:fullSystem}].concat(msgs)})
+    });
+    var data = await res.json();
+    var reply = data.choices[0].message.content;
+    var tr=document.getElementById('tr');if(tr)tr.remove();
+    addMsgDOM('assistant',reply,true);
+  } catch(e){
+    var tr=document.getElementById('tr');if(tr)tr.remove();
+    addMsgDOM('assistant','Connection error. Please check your network and try again.\n\nIf this persists, make sure the Cloudflare Worker URL is configured correctly in Settings.',false);
+  }
+  document.getElementById('sbtn').disabled=false;
+}
+
+// ─── KYC DATA ─────────────────────────────────────────────────────────────────
+var kyc = {
+  1:{num:1,title:'Activate · KYC Level 1',sub:'Know Your Customer · Pre-call intelligence checklist',prog:0,sections:[
+    {label:'Company Intelligence',icon:'ti-building',qs:[
+      {n:1,q:'What year was the company founded? What is their primary business?',why:'Understand their development stage and whether they match your target customer profile',ph:'e.g. Founded 2012, primarily industrial automation for automotive Tier-1'},
+      {n:2,q:'How large is the company — headcount and approximate revenue?',why:'Assess deal scale and potential contract size',ph:'e.g. ~800 people, estimated $120M annual revenue'},
+      {n:3,q:'What is their core competitive advantage in the market?',why:'Understand their strategic positioning — later you\'ll tie your value to their differentiation',ph:'e.g. Proprietary battery cell assembly process, fastest cycle time in the industry'}
+    ]},
+    {label:'Key Stakeholders',icon:'ti-user-star',qs:[
+      {n:4,q:'Who is the economic buyer — the person who controls the budget and signs the PO?',why:'Technical approval ≠ budget authority ≠ executive sign-off. Find the person who can say yes.',ph:'e.g. CFO David Park, VP Operations Sarah Chen'},
+      {n:5,q:'Who is the technical decision maker — the person who leads solution evaluation?',why:'This is your champion candidate. They shape the internal recommendation.',ph:'e.g. Director of Engineering Mike Rodriguez, leads all capital equipment decisions'},
+      {n:6,q:'What are the typical payment terms? Who handles procurement?',why:'Understand commercial constraints early — avoid surprises at contract stage',tags:['Net 30','Net 60','Net 90','Net 120+','Project milestone-based']}
+    ]},
+    {label:'Initial Qualification',icon:'ti-star',qs:[
+      {n:7,q:'How would you initially classify this account?',tags:['A — High priority: clear need + budget + timeline','B — Nurture: need exists but not mature yet','C — Monitor: no clear need at this time'],why:'Account classification determines how much time and resource to invest'},
+      {n:8,q:'What type of organization is this?',tags:['Public company','Private company','PE-backed','Family-owned','Government/Public sector','Startup / Scale-up']}
+    ]}
+  ]},
+  2:{num:2,title:'Goal Shared · Discovery Meeting',sub:'SPIN Discovery · Business goal alignment',prog:10,sections:[
+    {label:'Situation Questions (S)',icon:'ti-building-factory',qs:[
+      {n:1,q:'What does their current operational environment look like? What processes are involved?',why:'Establish baseline understanding before probing for problems',ph:'e.g. 3 manufacturing sites, primary in Texas. Semi-automated assembly, ~30% manual operations'},
+      {n:2,q:'What systems or solutions are they currently using for this area?',why:'Identify existing vendors, understand switching friction, spot replacement opportunity',ph:'e.g. Using legacy system from 2016, considering upgrade. No current vendor for this function.'},
+      {n:3,q:'How long have these systems been in place? Who manages them?',why:'Assess technical debt and identify internal champions vs. defenders of status quo',tags:['Less than 2 years','2-4 years','4-7 years (aging)','7+ years (needs replacement)']}
+    ]},
+    {label:'Problem Questions (P)',icon:'ti-alert-triangle',qs:[
+      {n:4,q:'What problems are costing them the most right now — operationally, commercially, or strategically?',why:'Let them name their own pain. Never name it for them — they own what they say.',ph:'e.g. Production downtime averaging 8h/week. Order fulfillment delays causing customer churn.'},
+      {n:5,q:'How satisfied are they with their current suppliers — delivery, service, responsiveness?',why:'Service gaps are often more powerful than technical gaps. This is a key differentiation lever.',tags:['Delivery too slow','Service response poor','Poor technical support','Billing/contract issues','Generally satisfied']},
+      {n:6,q:'What is their current defect rate or quality gap? Where does it occur?',why:'Quantifying quality problems creates a foundation for ROI analysis later',ph:'e.g. First-pass yield ~88%, failures concentrated in final assembly stage'}
+    ]},
+    {label:'Decision Chain Mapping',icon:'ti-users',qs:[
+      {n:7,q:'Who typically leads a purchase decision like this — which department, and what is the approval process?',why:'Map the decision chain. You need to know all 5-8 people who influence this deal.',ph:'e.g. Engineering defines requirements, Procurement runs RFQ, VP Ops approves, CFO signs above $200K'},
+      {n:8,q:'How long does a purchase process like this typically take from initial interest to signed contract?',why:'Understanding the sales cycle helps you control cadence and set realistic timelines',tags:['Less than 1 month','1-3 months','3-6 months','6-12 months','12+ months']}
+    ]}
+  ]},
+  3:{num:3,title:'Champion · Solution Development',sub:'SDP Tool™ · Champion confirmed, Stakeholder map built',prog:20,sections:[
+    {label:'Need-Payoff Questions (N)',icon:'ti-target',qs:[
+      {n:1,q:'What specific, measurable outcomes does the customer want this solution to achieve?',why:'Let the customer articulate the value — what they say out loud, they own. Don\'t tell them what they should want.',ph:'e.g. Reduce downtime by 60%, improve throughput by 20%, deliver within 8-week lead time'},
+      {n:2,q:'If this problem were solved, what would the financial impact be over the next 12 months?',why:'Build a quantified value picture. Every stated pain should map to a dollar figure.',ph:'e.g. Estimated $2.4M in prevented downtime cost + 15% capacity gain worth ~$800K'},
+      {n:3,q:'What is their expected ROI timeframe for this type of investment?',why:'ROI sensitivity tells you how to price and position the solution',tags:['Less than 1 year','1-2 years','2-3 years','3+ years acceptable']}
+    ]},
+    {label:'Competitive Landscape',icon:'ti-sword',qs:[
+      {n:4,q:'Which other vendors or solutions are they evaluating? What is the customer\'s read on each?',why:'Understand the competitive field. Are you in Column A (preferred) or Column B (benchmark)?',ph:'e.g. Comparing us vs. VendorX and VendorY. VendorX is cheaper but slow delivery. VendorY has local case study.'},
+      {n:5,q:'What are the 2-3 evaluation criteria they care about most?',why:'Know their scorecard. Your solution needs to score highest on what matters to them, not to you.',tags:['Technical performance','Price / TCO','Delivery lead time','After-sales service','Local case studies','Certifications / compliance']}
+    ]},
+    {label:'Champion Confirmation',icon:'ti-star',qs:[
+      {n:6,q:'Who inside the customer organization is actively advocating for your solution?',why:'A Champion is someone who will risk their credibility internally to push your deal forward. Without one, you are flying blind.',tags:['VP/Director level (strongest)','Engineering manager (influential)','Procurement lead (process driver)','End user (limited influence)','No champion identified yet']},
+      {n:7,q:'What does your Champion need from you to build internal support?',why:'Arm your Champion with the right ammunition: data, case studies, ROI models, comparison reports',ph:'e.g. Competitor comparison doc + ROI calculator + 2 reference customers in same industry + exec summary for CFO'}
+    ]}
+  ]},
+  4:{num:4,title:'Evaluating · Decision Advancement',sub:'Know Your Customer Level 2 · Deep deal intelligence',prog:50,sections:[
+    {label:'Decision Chain — Critical',icon:'ti-users',qs:[
+      {n:1,q:'Who is the confirmed economic buyer — the person who authorizes the budget?',why:'Technical buy-in ≠ budget approval ≠ executive commitment. All three are needed.',ph:'e.g. CFO Jennifer Walsh is the economic buyer. Anything above $150K needs her sign-off.',filled:'CFO Jennifer Walsh confirmed as economic buyer. Technical lead has approved.'},
+      {n:2,q:'Do you have a confirmed Champion — someone internally advocating for your solution?',tags:['Yes — VP/Director level (strong)','Yes — Engineering manager (moderate)','Yes — End user (limited)','No champion yet','Uncertain'],why:'The Champion\'s political capital determines how much they can move internally for you'},
+      {n:3,q:'Which key stakeholders have you NOT yet met? How will you reach them?',why:'Average 5-8 decision influencers in a complex B2B deal. One contact is not enough.',ph:'e.g. Still need to meet Chief Procurement Officer and CTO. Plan to ask Champion to facilitate.'}
+    ]},
+    {label:'Timeline & Budget',icon:'ti-calendar',qs:[
+      {n:4,q:'What is the customer\'s budget cycle and hard deadline for this decision?',why:'No deadline = no urgency = no deal. You need to know their forcing function.',ph:'e.g. Q4 budget cycle, must sign by Nov 30 because new production line starts Jan 15'},
+      {n:5,q:'What is the budget range? What is the approval threshold that triggers executive sign-off?',tags:['Under $50K','$50K-$200K','$200K-$500K','$500K-$2M','$2M+ (strategic level)']}
+    ]},
+    {label:'Risks & Next Actions',icon:'ti-alert-triangle',qs:[
+      {n:6,q:'What concerns or objections has the customer raised? How are you addressing each?',why:'Surface objections early. Bad news now is better than a lost deal later.',tags:['Price too high','Lead time too long','Service coverage concerns','Budget not confirmed','Competitor pressure','Technical risk / unproven','Internal politics / other priorities']},
+      {n:7,q:'What is the next concrete, committed action — with a specific date and owner?',why:'A meeting with no committed next step is a meeting that didn\'t advance the deal.',ph:'e.g. Meeting with CFO on Thursday. Bringing ROI model + 3 reference customers in same vertical.'}
+    ]}
+  ]},
+  5:{num:5,title:'Verbal Win · Negotiation Worksheet',sub:'3-Line Targets · BATNA · Concession Strategy',prog:80,sections:[
+    {label:'Three-Line Target Setting (non-negotiable prep)',icon:'ti-adjustments',qs:[
+      {n:1,q:'What is your Opening Position — your ideal outcome?',why:'Your highest reasonable ask. Ambitious but credible.',ph:'e.g. Full payment upfront. List price. Signed by end of month. 3-year service contract included.'},
+      {n:2,q:'What is your Target — the outcome you realistically expect?',why:'This is what you are actually aiming for. Be honest with yourself.',ph:'e.g. 70% upfront, 95% of list, signed this quarter, 1-year service included'},
+      {n:3,q:'What is your Walk-Away Point — the minimum you will accept before walking?',why:'Without a clear bottom line, every concession feels like a small step. They add up.',ph:'e.g. No less than 85% of list. Payment within 90 days. No free installation.'}
+    ]},
+    {label:'BATNA & Concession Strategy',icon:'ti-sword',qs:[
+      {n:4,q:'What is your BATNA — your best alternative if this deal does not close?',why:'The stronger your BATNA, the more credibly you can walk away. A weak BATNA = a weak negotiation position.',ph:'e.g. Another deal of similar size in pipeline, likely to close same quarter'},
+      {n:5,q:'What does the customer care about most in this negotiation?',tags:['Price / discount','Payment terms / timing','Delivery speed','Service level guarantees','Technical support','Exclusivity or preferred status','Contract term flexibility'],why:'Understand their priorities so you can trade what costs you little for what matters to them most'},
+      {n:6,q:'What is your concession sequence — what do you give, in what order, in exchange for what?',why:'Small steps, slow pace. Every concession is linked to a return. Never concede unilaterally.',ph:'e.g. Step 1: Offer faster delivery in exchange for earlier PO commitment. Step 2: 2% discount for full payment upfront.'}
+    ]},
+    {label:'Closing Actions',icon:'ti-check',qs:[
+      {n:7,q:'Have you prepared a Sequence of Events — a written timeline from now to signed contract?',tags:['Yes — shared with customer','Yes — internal only','Not yet prepared','Need Andy to help me build one'],why:'An SOE removes ambiguity and creates shared accountability for closing timeline'}
+    ]}
+  ]},
+  6:{num:6,title:'Won & Deliver · Success Metrics',sub:'Delivery milestones · Expansion planning',prog:95,sections:[
+    {label:'Success Metrics (must align before delivery starts)',icon:'ti-chart-line',qs:[
+      {n:1,q:'What KPIs will the customer use to measure success of this project?',why:'Success metrics must be agreed before execution — not defined after. If you can\'t measure it, you can\'t prove it.',ph:'e.g. Downtime reduction ≥60%, throughput increase ≥15%, on-time delivery ≥95%'},
+      {n:2,q:'What is the baseline — the current state before your solution?',why:'No baseline = no proof of improvement. Establish this in writing before you start.',ph:'e.g. Current downtime 8%, throughput utilization 72%, on-time delivery 78%'},
+      {n:3,q:'What is the measurement cadence and reporting format?',tags:['Monthly report','Quarterly business review','Semi-annual review','Annual strategic review'],ph:'e.g. Monthly dashboard shared with VP Ops + quarterly joint review with executive sponsor'}
+    ]},
+    {label:'Expansion & Referral Planning',icon:'ti-repeat',qs:[
+      {n:4,q:'What is the plan for ongoing account reviews — schedule and format?',tags:['Monthly check-in call','Quarterly on-site visit','Semi-annual review meeting','Annual strategic planning session'],why:'Post-delivery engagement is where cross-sell and upsell opportunities are born'},
+      {n:5,q:'How and when will you ask for a reference or case study? Who is the right contact?',why:'One satisfied customer can generate 3-5 referrals. This is the highest-ROI action in account management.',ph:'e.g. Request written testimonial at 90-day mark. Ask VP Ops to introduce us to 2 peers at industry event.'},
+      {n:6,q:'What expansion opportunities exist within this account?',ph:'e.g. 4 more production lines eligible for same upgrade. New facility opening in 18 months. Annual maintenance contract up for renewal.'}
+    ]}
+  ]}
+};
+
+function openKYC(stage) {
+  var d = kyc[stage];
+  if(!d) return;
+  document.getElementById('mn').textContent=d.num;
+  document.getElementById('mt').textContent=d.title;
+  document.getElementById('mst').textContent=d.sub;
+  document.getElementById('mpf').style.width=d.prog+'%';
+  var body=document.getElementById('mbody'); body.innerHTML='';
+  d.sections.forEach(function(sec){
+    var sd=document.createElement('div');sd.className='msec';
+    var sl=document.createElement('div');sl.className='msecl';
+    sl.innerHTML='<i class="ti '+sec.icon+'"></i>'+sec.label;
+    sd.appendChild(sl);
+    sec.qs.forEach(function(q){
+      var qi=document.createElement('div');qi.className='qitem';
+      var qr=document.createElement('div');qr.className='qrow';
+      qr.innerHTML='<div class="qnum">'+q.n+'</div><div class="qtxt">'+q.q+'</div>';
+      qi.appendChild(qr);
+      if(q.why){var qw=document.createElement('div');qw.className='qwhy';qw.textContent='Why ask: '+q.why;qi.appendChild(qw);}
+      if(q.tags){
+        var qt=document.createElement('div');qt.className='qtags';
+        q.tags.forEach(function(t){var tg=document.createElement('div');tg.className='qtag';tg.textContent=t;tg.onclick=function(){this.classList.toggle('sel');};qt.appendChild(tg);});
+        qi.appendChild(qt);
+      }
+      if(q.ph||!q.tags){
+        var qin=document.createElement('textarea');
+        qin.className='qinp'+(q.filled?' ok':'');
+        qin.rows=2; qin.placeholder=q.ph||'Enter your notes…';
+        if(q.filled)qin.value=q.filled;
+        qi.appendChild(qin);
+      }
+      sd.appendChild(qi);
+    });
+    body.appendChild(sd);
+  });
+  document.getElementById('kyc-ov').classList.add('open');
+}
+
+function closeKYC(){document.getElementById('kyc-ov').classList.remove('open');}
+
+function saveKYC(){
+  closeKYC(); showScreen('ds');
+  addMsgDOM('assistant','✅ Saved to knowledge base. I\'ll reference this customer intelligence in my next response to give you sharper, more specific advice.',false);
+}
+
+function sendKYC(){
+  var inputs=document.querySelectorAll('#mbody .qinp');
+  var tags=document.querySelectorAll('#mbody .qtag.sel');
+  var content='[KYC Deal Intelligence]\n';
+  inputs.forEach(function(inp){if(inp.value.trim())content+='- '+inp.value.trim()+'\n';});
+  tags.forEach(function(tag){content+='- '+tag.textContent+'\n';});
+  content+='\nBased on this deal intelligence, help me identify the key risks and my best next action using DDS methodology.';
+  closeKYC(); showScreen('ds');
+  document.getElementById('inp').value=content; send();
+}
+
+document.getElementById('kyc-ov').addEventListener('click',function(e){if(e.target===this)closeKYC();});
+
+function saveSettings(){
+  var nm=document.getElementById('st-name').value;
+  var role=document.getElementById('st-role').value;
+  if(nm){userName=nm;['sbav','psav','plav','grav','stav'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=nm[0];});['sbun','psun','plun','grun','stun'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=nm;});}
+  if(role) document.getElementById('sbur').textContent=role;
+  alert('Settings saved.');
+}
+function toggleFW(el){var inner=el.querySelector('div');if(el.style.background==='var(--blue)'){el.style.background='var(--border2)';inner.style.right='18px';}else{el.style.background='var(--blue)';inner.style.right='2px';}}
+</script>
+</body>
+</html>
