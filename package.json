@@ -1,1 +1,6 @@
-{"name":"cliento-api"}
+{
+  "name": "cliento-sales-advisor",
+  "version": "1.0.0",
+  "description": "The AI Sales Advisor for B2B Account Executives",
+  "homepage": "https://cliento-sales-advisor.vercel.app"
+}
