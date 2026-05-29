@@ -557,10 +557,8 @@ body{font-family:'DM Sans','Segoe UI',sans-serif;background:var(--bg);color:var(
 
 <script>
 // ─── API CONFIG ───────────────────────────────────────────────────────────────
-// Replace WORKER_URL with your Cloudflare Worker URL after deployment.
-// Your Worker proxies requests to DeepSeek, keeping the API key server-side.
-// See README.md for Cloudflare Worker setup instructions.
-var WORKER_URL = 'https://old-term-5f66.baijing1818.workers.dev';
+// Vercel API proxy endpoint — keeps the DeepSeek API key server-side.
+var WORKER_URL = '/api/chat';
 
 // ─── SYSTEM PROMPT ────────────────────────────────────────────────────────────
 var SYSTEM = `You are Andy — the AI sales advisor behind Cliento · Sales Advisor.
@@ -964,7 +962,7 @@ async function send() {
     addMsgDOM('assistant',reply,true);
   } catch(e){
     var tr=document.getElementById('tr');if(tr)tr.remove();
-    addMsgDOM('assistant','Connection error. Please check your network and try again.\n\nIf this persists, make sure the Cloudflare Worker URL is configured correctly in Settings.',false);
+    addMsgDOM('assistant','Connection error. Please check your network and try again.\n\nIf this persists, please refresh the page and try again.',false);
   }
   document.getElementById('sbtn').disabled=false;
 }
